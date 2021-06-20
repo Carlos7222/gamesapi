@@ -1,0 +1,90 @@
+
+<div *ngIf="tipo=='buscar' &&  infocargada" style="margin-top:15px">
+  <h1 style="text-align: center;">resultados del juego: {{query}}</h1>
+</div>
+<div class="container">
+  <hr>
+  <form [formGroup]="formulariobusqueda" (ngSubmit)="buscar()" *ngIf="tipo!='buscar'" >
+    <div style="display: flex; ">
+      <h3  style="margin-right: 20px;">Filtro:</h3>
+      <select formControlName="tipo"  class="form-select" aria-label="Default select example" style="width: 40%;margin-right: 20px;">
+        <option value="1">Favoritos/Populares</option>
+        <option value="2">Fecha</option>
+        <option value="3">Genero</option>
+      </select>  
+  
+    <select formControlName="fecha" *ngIf="formulariobusqueda.value.tipo==2" class="form-select" aria-label="Default select example" style="width: 100px;">
+        <option *ngFor="let item of ano" [value]="item">{{item}}</option>
+    </select>  
+    <select formControlName="genero" *ngIf="formulariobusqueda.value.tipo==3" class="form-select" aria-label="Default select example" style="width: 100px;">
+      <option *ngFor="let item of genero" [value]="item.slug">{{item.name}}</option>
+  </select>  
+      <button style="margin-left: 15px;" type="submit" >
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    
+  <hr>
+  </form>
+
+
+  <div class="row row-cols-1 row-cols-md-3  row-cols-xl-4" infiniteScroll
+  [infiniteScrollDistance]="2"
+   (scrolled)="scrollfinal()">
+    <div class="col" *ngFor="let game of games" style="margin-top: 10px; margin-bottom: 10px;">
+      <div (click)="estegame(game.id)" class="card h-100" style="color: #f8cb79; box-shadow: 0px 10px 10px -6px black; border-color: #f8cb79;cursor: pointer;">
+        <img [src]="game.background_image" class="card-img-top" alt="...">
+
+        <div class="card-body" style="background-color: black;">
+          <h5 class="card-title">{{game.name}}</h5>
+          <p class="card-text"><small class="text-muted">Calificacion</small>
+            <i style="margin-left: 10px;margin-right: 10px; " *ngIf="game.rating>=4.3" class="fas fa-heart"></i>
+            <i style="margin-left: 10px;margin-right: 10px; " *ngIf="game.rating<4.3 && game.rating>=3.7 " class="far fa-thumbs-up"></i>
+            <i style="margin-left: 10px;margin-right: 10px; " *ngIf="game.rating<3.7 && game.rating>=2.9" class="fas fa-minus"></i>
+            <i style="margin-left: 10px;margin-right: 10px; " *ngIf="game.rating<2.9 &&  game.rating>1.9" class="far fa-sad-tear"></i>
+            <i style="margin-left: 10px;margin-right: 10px; " *ngIf="game.rating<1.9" class="far fa-thumbs-down"></i>
+            {{game.rating}} 
+          </p> 
+          <div>
+
+            <p class="card-text"><small class="text-muted">Genero</small>
+
+              <i *ngIf="game|generopipe: 4 " style="margin-left: 10px;" class="fas fa-fist-raised"></i>
+              <i *ngIf="game|generopipe: 7" style="margin-left: 10px;" class="fas fa-brain"></i>
+              <i *ngIf="game|generopipe: 3" style="margin-left: 10px;" class="far fa-map"></i>
+              <i *ngIf="game|generopipe: 2" style="margin-left: 10px;" class="fas fa-fighter-jet"></i>
+              <i *ngIf="game|generopipe: 7" style="margin-left: 10px;" class="fas fa-ad"></i>
+              <i *ngIf="game|generopipe: 1" style="margin-left: 10px;" class="fas fa-car"></i>
+              <i *ngIf="game|generopipe: 15" style="margin-left: 10px;" class="fas fa-volleyball-ball"></i>
+            </p>
+          </div>
+
+          <div class="card-footer" style="display: flex; padding-left: 0;  ">
+            <p class="card-text"><small class="text-muted">Plataformas:</small>
+            <div class="div-plataforma">
+              <i class="iconos-plataforma" *ngIf="game|plataforma:'PlayStation'" class="fab fa-playstation"></i>
+            </div>
+            <div class="div-plataforma">
+              <i class="iconos-plataforma" *ngIf="game|plataforma:'Xbox'" class="fab fa-xbox"></i>
+            </div>
+            <div class="div-plataforma">
+              <i class="iconos-plataforma" *ngIf="game|plataforma:'PC'" class="fas fa-desktop"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<button (click)="inicio()" *ngIf="mostrabutton && infocargada" class="inicio-btn">Inicio</button>
+
+<div *ngIf="infocargada==false" style="margin-top: 20px;">
+  <h1 style="text-align: center;">Cargando informacion............</h1>
+</div>
+
+<div *ngIf="games.length==0 && infocargada" style="margin-top: 20px;">
+  <h1 style="text-align: center;"> Juego no encontrado</h1>
+
+</div>

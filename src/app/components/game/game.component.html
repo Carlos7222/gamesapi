@@ -1,0 +1,51 @@
+<div class="container " style="background-color: black; align-items: center;margin-bottom: 50px;">
+    <div class="row row-cols-1 row-cols-md-2 " style="margin-top: 100px; color:#f8cb79 ; padding: 30px">
+        <div class="col">
+            <div>
+                <img [src]="game.background_image" class="img-fluid" alt="">
+            </div>
+
+            <ngb-carousel *ngIf="imagenes.length>0" style="margin-top: 20px;">
+                <ng-template ngbSlide *ngFor="let imagen of imagenes">
+                    <div class="picsum-img-wrapper">
+                        <img [src]="imagen.image " style="width: 100%;  " alt="Random first slide">
+                    </div>
+
+                </ng-template>
+            </ngb-carousel>
+        </div>
+        <div class="col">
+            <h2>{{game.name_original}}</h2>
+            <h3>Descripcion:</h3>
+            <p style="text-align: justify;font-size: 13px;">{{game.description_raw}}</p>
+            <div *ngIf="video.length>0">
+                <video [src]="video[0].data[480]" width="
+                100%" controls></video>
+            </div>
+
+        </div>
+        <div class="col " style="margin-top: 20px; color:#f8cb79 ;">
+            <h5 style="display: flex;"> rating top: <p style="margin-left: 10px;"> {{game.rating_top}}</p>
+            </h5>
+            <a style="text-decoration: none; color: #f8cb79;margin-bottom: 20px;" [href]="game.website">Pagina
+                oficial</a>
+            <h5 style="margin-top: 20px;">Desarrolado por:</h5>
+            <div class="empresas">
+                <div  *ngFor="let desarrollador of game.developers" >
+                    <div class="card" style="width: 300px; margin-right: 30px; margin-top: 20px;">
+                        <img [src]="desarrollador.image_background" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: black;">
+                            <h5 class="card-title">{{desarrollador.name}}</h5>
+                            <p class="card-text">juegos desarooladores: {{desarrollador.games_count}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<button (click)="home()" class="inicio-btn">atras</button>

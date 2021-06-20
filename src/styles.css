@@ -1,1 +1,137 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+header{
+    height: 70px;
+    background-color: black;
+    border-color: black;
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 1 !important;
+    padding: 0 20px ;
+    text-align: center;
+  }
+  
+  .menu-toggle{
+    margin-left: auto;
+    color: #f8cb79;
+    line-height: 68px;
+    cursor: pointer;
+    display: none;
+  }
+ 
+  #menu{
+    margin-left: auto;
+  }
+  #menu ul li{
+    display: inline-block;
+  }
+  
+  #menu ul li a{
+    display: inline-block;
+    position: relative;
+    color: #f8cb79;
+    text-decoration: none;
+    line-height: 60px;
+    padding: 0 8px;
+    text-transform: uppercase;
+    transition: all .25;
+    margin-right: 80px;
+  }
+  
+  #menu ul li a:hover{
+    background: #00000c;
+  }
+  .mostrar{
+    height: 105px !important ;  
+  }
+  @media(max-width:870px) {
+    .menu-toggle{
+      display: block;
+    }
+
+    #menu{
+      background-color:#00000c;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: 0;
+   
+      overflow: hidden;
+      transition: .3 ease-out;
+    }
+    #menu ul li{
+      display: block;
+      text-align: center;
+    }
+    #menu ul li a{
+      color: #f8cb79;
+      font-size: 20px;
+      border-bottom: 1px solid #00000c;
+      width: 100%;
+    }
+    #menu ul li a:hover{
+      background-color: #977b45;
+    }
+    
+  }
+  .input-nombre{
+    margin-left: 10px;
+    border: 1px solid #DBE1EB;
+    font-size: 18px;
+    font-family: Arial, Verdana;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    color: #2E3133;
+    margin-top: 8px;
+    width: 100%;
+  }
+  .buscar-container{
+    width: 40%;
+  }
+
+
+.iconos-plataforma{
+    margin-left: 20px;
+}
+.div-plataforma{
+    margin-left: 20px;
+}
+
+.inicio-btn{
+  position: fixed;
+   bottom: 20px;
+   right: 30px;
+   z-index: 3;
+   background-color: #f8cb79;
+   border-radius: 15px;
+   border: 3px double black;
+   cursor: pointer;
+   font-size: 1.5rem;
+   transition: all 0.4s ease-in-out;
+  
+}
+.inicio-btn:hover{
+  color: black;
+  background-color: #f8cb79;
+}
+@media(max-width: 600px){
+  .input-nombre{
+    width: 100% !important;
+  }
+  
+  .buscar-container{
+    width: 80%;
+  }
+}
+

@@ -1,0 +1,16 @@
+<header class="animate__animated animate__backInDown small">
+  <div class="buscar-container">
+      <input (keyup.enter)="enviarsolicitud(buscar.value )" #buscar  class="input-nombre" type="text" placeholder="Nombre del juego"> 
+  </div>
+  <nav [ngClass]="{'mostrar':desplegar}"   id="menu">
+    <ul style="margin-top:0 ; padding-left: 0; padding-bottom: 0;">
+      <li > <a href="" routerLink='home'   >Inicio</a></li>
+    
+    </ul>
+
+  </nav>
+  <div  class="menu-toggle  ">
+    <i (click)="abrirnavbar()" class="fa fa-bars"></i>
+  </div>
+</header>
+  
